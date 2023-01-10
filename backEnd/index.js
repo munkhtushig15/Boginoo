@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import userRouter from "./router/user.js";
+import linkRouter from "./router/link.js";
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/users", userRouter);
+app.use("/links", linkRouter);
 
 const uri = process.env.MONGO_DB || "";
 const port = process.env.PORT || 1000;
