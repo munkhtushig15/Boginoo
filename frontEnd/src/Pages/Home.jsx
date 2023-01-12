@@ -1,12 +1,24 @@
 import "../Styles/Home.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const Home = () => {
-  let [link, setLink] = useState();
-    const shrinkButton = () => {
-        
-    }
+  const [url, setUrl] = useState();
+  const [data, setData] = useState();
+
+  const instance = axios.create({
+    baseURL: "http://localhost:1000",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+  const postUrl = async () => {
+    const res = await instance.post("/links", {
+      url: url,
+    });
+    setData(res.data.data.shortId);
+  };
 
   return (
     <div className="homeContainer">
@@ -19,6 +31,7 @@ const Home = () => {
           </Link>
         </div>
       </header>
+
       <main>
         <img src={require("../images/boginooLogo.png")} alt="" />
         <div className="box">
@@ -26,13 +39,22 @@ const Home = () => {
             placeholder="https://www.web-huudas.mn"
             type="text"
             id="boginooInp"
-            onChange={(e) => setLink(e.target.value)}
+            onChange={(e) => setUrl(e.target.value)}
           />
-          <button onClick={shrinkButton()} className="boginooButton">Богиносгох</button>
+          <button className="boginooButton" onClick={postUrl}>
+            Богиносгох
+          </button>
         </div>
-        {
-
-        }
+        <div>
+          <div>
+            <label htmlFor="">Өгөгдсөн холбоос:</label>
+            <p>{url}</p>
+          </div>
+          <div>
+            <label htmlFor="">Богино холбоос:</label>
+            <p>{`localhost:3000/${data}`}</p>
+          </div>
+        </div>
       </main>
       <footer>
         <img src={require("../images/credit.png")} alt="" />

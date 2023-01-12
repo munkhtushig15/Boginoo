@@ -30,7 +30,7 @@ const Login = () => {
               Нууц үг
             </label>
             <input
-              type="text"
+              type="password"
               name="pass"
               className="inps"
               placeholder="••••••••••"

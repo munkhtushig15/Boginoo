@@ -1,8 +1,8 @@
 import "../Styles/LoginAndSignup.css";
 import axios from "axios";
 import { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
@@ -26,8 +26,7 @@ const Signup = () => {
     } catch (error) {
       toast(error.response.data.data);
     }
-  }
-
+  };
 
   return (
     <div className="loginContainer">
@@ -59,7 +58,7 @@ const Signup = () => {
             </label>
             <input
               onChange={(e) => setPassword(e.target.value)}
-              type="text"
+              type="password"
               name="pass"
               className="inps"
               placeholder="••••••••••"
@@ -70,7 +69,7 @@ const Signup = () => {
               Нууц үгээ давтана уу?
             </label>
             <input
-              type="text"
+              type="password"
               name="pass"
               className="inps"
               placeholder="••••••••••"

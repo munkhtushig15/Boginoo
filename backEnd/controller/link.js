@@ -26,11 +26,11 @@ export const createLink = async (req, res) => {
 
 export const getLinkById = async (req, res) => {
   try {
-    const { id } = req.params;
-    const link = await Link.findById({ _id: id });
+    const id = req.params.id;
+    const url = await Link.findOne({shortId : id});
     res.status(200).send({
       success: true,
-      data: link,
+      data: url,
     });
   } catch (error) {
     res.status(400).send({
