@@ -10,7 +10,9 @@ const Login = () => {
       </header>
       <main>
         <div className="loginBox">
-          <img src={require("../images/logo.png")} className="logo" />
+          <Link to={"/"}>
+            <img src={require("../images/logo.png")} className="logo" />
+          </Link>
           <p className="boginooP">Нэвтрэх</p>
           <div className="boxThree">
             <label htmlFor="email" className="labels">

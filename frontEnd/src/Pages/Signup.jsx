@@ -1,6 +1,34 @@
 import "../Styles/LoginAndSignup.css";
+import axios from "axios";
+import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 const Signup = () => {
+  const instance = axios.create({
+    baseURL: "http://localhost:1000",
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const Post = async () => {
+    try {
+      const res = await instance.post("/users", {
+        email: email,
+        password: password,
+      });
+      console.log(res);
+      toast("Successfully signed up");
+    } catch (error) {
+      toast(error.response.data.data);
+    }
+  }
+
+
   return (
     <div className="loginContainer">
       <header>
@@ -9,13 +37,16 @@ const Signup = () => {
       </header>
       <main>
         <div className="loginBox">
-          <img src={require("../images/logo.png")} className="logo" />
+          <Link to={"/"}>
+            <img src={require("../images/logo.png")} className="logo" />
+          </Link>
           <p className="boginooP">Бүртгүүлэх</p>
           <div className="boxThree">
             <label htmlFor="email" className="labels">
               Цахим хаяг
             </label>
             <input
+              onChange={(e) => setEmail(e.target.value)}
               type="text"
               name="email"
               className="inps"
@@ -27,6 +58,7 @@ const Signup = () => {
               Нууц үг
             </label>
             <input
+              onChange={(e) => setPassword(e.target.value)}
               type="text"
               name="pass"
               className="inps"
@@ -35,7 +67,7 @@ const Signup = () => {
           </div>
           <div className="boxThree">
             <label htmlFor="pass" className="labels">
-              Нууц үгээ давтна уу?
+              Нууц үгээ давтана уу?
             </label>
             <input
               type="text"
@@ -44,7 +76,7 @@ const Signup = () => {
               placeholder="••••••••••"
             />
           </div>
-          <button type="submit" className="clickGreen">
+          <button onClick={Post} type="submit" className="clickGreen">
             Бүртгүүлэх
           </button>
         </div>
@@ -52,6 +84,7 @@ const Signup = () => {
       <footer>
         <img src={require("../images/credit.png")} alt="" />
       </footer>
+      <ToastContainer />
     </div>
   );
 };

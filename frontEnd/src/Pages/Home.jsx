@@ -33,12 +33,6 @@ const Home = () => {
         {
 
         }
-        <div>
-          <p>Өгөгдсөн холбоос:</p>
-          <span>{link}</span>
-          <p>Богино холбоос:</p>
-
-        </div>
       </main>
       <footer>
         <img src={require("../images/credit.png")} alt="" />

@@ -1,4 +1,5 @@
 import "../Styles/LoginAndSignup.css";
+import { Link } from "react-router-dom";
 
 const Forgot = () => {
   return (
@@ -9,7 +10,9 @@ const Forgot = () => {
       </header>
       <main>
         <div className="loginBox">
-          <img src={require("../images/logo.png")} className="logo" />
+          <Link to={"/"}>
+            <img src={require("../images/logo.png")} className="logo" />
+          </Link>
           <p className="boginooP">Нууц үг сэргээх</p>
           <span className="boginooSpan">Бид таны цахим хаяг руу нууц үг сэргээх хаяг явуулах болно.</span>
           <div className="boxThree">

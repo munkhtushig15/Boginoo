@@ -26,11 +26,32 @@ export const createLink = async (req, res) => {
 
 export const getLinkById = async (req, res) => {
   try {
-    const id = req.params.id;
-    const link = await Link.findById({ shortId: id });
+    const { id } = req.params;
+    const link = await Link.findById({ _id: id });
     res.status(200).send({
       success: true,
       data: link,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      data: error.message,
+    });
+  }
+};
+
+export const deleteLink = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const link = await Link.findByIdAndRemove({ _id: id });
+    res.status(200).send({
+      success: true,
+      data: link,
+    });
+  } catch (error) {
+    res.status(400).send({
+      success: false,
+      data: error.message,
+    });
+  }
 };

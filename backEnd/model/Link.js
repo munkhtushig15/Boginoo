@@ -3,7 +3,6 @@ import { nanoid } from "nanoid";
 
 const LinkSchema = new mongoose.Schema({
   url: String,
-  id: String,
   shortId: String,
 });
 
