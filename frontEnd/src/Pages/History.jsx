@@ -2,10 +2,13 @@ import "../Styles/Home.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useEffect } from "react";
+import Past from "../components/Past";
 
-const Home = () => {
+const History = () => {
   const [url, setUrl] = useState();
   const [data, setData] = useState();
+  const [link, setLink] = useState();
 
   const instance = axios.create({
     baseURL: "http://localhost:1000",
@@ -19,21 +22,30 @@ const Home = () => {
     });
     setData(res.data.data.shortId);
   };
+  const getLinks = async () => {
+    const res = await instance.get("/links");
+    setLink(res.data.data);
+    console.log(res.data.data);
+  };
 
+  useEffect(() => {
+    getLinks();
+  }, []);
   return (
     <div className="homeContainer">
       <header>
         <br />
         <div className="headerRight">
           <span className="boginooHerhen">Хэрхэн ажилладаг вэ?</span>
-          <Link to={"/login"}>
-            <button className="boginooButton">Нэвтрэх</button>
+          <Link to={"/history"} className="boginooLink">
+            <span className="boginooUser">Dulguun</span>
+            <img src={require("../images/icon-down.png")} alt="" />
           </Link>
         </div>
       </header>
 
       <main>
-        <img src={require("../images/boginooLogo.png")} alt="" />
+        <Link to={"/homelogged"}><img src={require("../images/boginooLogo.png")} alt="" /></Link>
         <div className="box">
           <input
             placeholder="https://www.web-huudas.mn"
@@ -45,14 +57,13 @@ const Home = () => {
             Богиносгох
           </button>
         </div>
-        <div className="urlAndShortUrl">
-          <div>
-            <label className="boginooLabel" htmlFor="">Өгөгдсөн холбоос:</label>
-            <p className="labelP">{url}</p>
-          </div>
-          <div>
-            <label className="boginooLabel" htmlFor="">Богино холбоос:</label>
-            <p className="labelP">{`localhost:3000/${data}`}</p>
+        <div className="history">
+          <h2>Түүх</h2>
+          <div className="histories">
+            {link &&
+              link.map((url) => {
+                return <Past url={url} />;
+              })}
           </div>
         </div>
       </main>
@@ -63,4 +74,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default History;

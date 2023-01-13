@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-const Home = () => {
+const HomeLogged = () => {
   const [url, setUrl] = useState();
   const [data, setData] = useState();
 
@@ -26,8 +26,9 @@ const Home = () => {
         <br />
         <div className="headerRight">
           <span className="boginooHerhen">Хэрхэн ажилладаг вэ?</span>
-          <Link to={"/login"}>
-            <button className="boginooButton">Нэвтрэх</button>
+          <Link to={'/history'} className="boginooLink">
+            <span className="boginooUser">Dulguun</span>
+            <img src={require("../images/icon-down.png")} alt="" />
           </Link>
         </div>
       </header>
@@ -63,4 +64,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeLogged;
