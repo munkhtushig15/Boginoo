@@ -62,7 +62,7 @@ const History = () => {
           <div className="histories">
             {link &&
               link.map((url) => {
-                return <Past url={url} />;
+                return <Past key={url._id} url={url} />;
               })}
           </div>
         </div>

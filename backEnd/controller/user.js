@@ -17,8 +17,8 @@ export const users = async (req, res) => {
 
 export const user = async (req, res) => {
   try {
-    const { id } = req.params;
-    const user = await User.findById({ _id: id });
+    const { email } = req.params;
+    const user = await User.findOne({ email: email });
     res.status(200).send({
       success: true,
       data: user,

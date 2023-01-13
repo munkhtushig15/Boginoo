@@ -1,17 +1,18 @@
 import "../Styles/LoginAndSignup.css";
-import axios from "axios";
+// import axios from "axios";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import { instance } from "./Home";
 
 const Signup = () => {
-  const instance = axios.create({
-    baseURL: "http://localhost:1000",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
+  // const instance = axios.create({
+  //   baseURL: "http://localhost:1000",
+  //   headers: {
+  //     "Content-type": "application/json; charset=UTF-8",
+  //   },
+  // });
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -37,7 +38,7 @@ const Signup = () => {
       <main>
         <div className="loginBox">
           <Link to={"/"}>
-            <img src={require("../images/logo.png")} className="logo" />
+            <img src={require("../images/logo.png")} className="logo" alt="holo" />
           </Link>
           <p className="boginooP">Бүртгүүлэх</p>
           <div className="boxThree">

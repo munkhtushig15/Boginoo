@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
+export const instance = axios.create({
+  baseURL: "http://localhost:1000",
+  headers: {
+    "Content-type": "application/json; charset=UTF-8",
+  },
+});
+
 const Home = () => {
   const [url, setUrl] = useState();
   const [data, setData] = useState();
-
-  const instance = axios.create({
-    baseURL: "http://localhost:1000",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
   const postUrl = async () => {
     const res = await instance.post("/links", {
       url: url,
