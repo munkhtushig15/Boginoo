@@ -11,7 +11,7 @@ const Past = ({ url }) => {
         <div className="shortUrlContainer">
           <span className="boginooLabel">Богино холбоос:</span>
           <div className="shortShort">
-            <span className="labelP pos1">localhost:1000/{url.shortId}</span>
+            <span className="labelP pos1">localhost:3000/{url.shortId}</span>
             <span className="copyThat pos2">Copy</span>
           </div>
         </div>

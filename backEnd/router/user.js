@@ -1,9 +1,17 @@
 import express from "express";
-import { user, users, createUser, deleteUser } from "../controller/user.js";
+import {
+  user,
+  users,
+  createUser,
+  deleteUser,
+  getUserById,
+} from "../controller/user.js";
 
 const userRouter = express.Router();
 
 userRouter.route("/").get(users).post(createUser);
-userRouter.route("/:id").get(user).delete(deleteUser);
+userRouter.route("/:id").delete(deleteUser).get(getUserById);
+userRouter.route("/login").post(user);
+// userRouter.route("/signup").post(createUser);
 
 export default userRouter;

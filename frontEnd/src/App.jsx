@@ -6,7 +6,6 @@ import Forgot from "./Pages/Forgot";
 import Signup from "./Pages/Signup";
 import Links from "./Pages/Links";
 import HomeLogged from "./Pages/HomeLogged";
-import History from "./Pages/History";
 
 function App() {
   return (
@@ -14,11 +13,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/homelogged" element={<HomeLogged />} />
-          <Route path="login" element={<Login />} />
-          <Route path="history" element={<History />} />  
-          <Route path="signUp" element={<Signup />} />
-          <Route path="forgot" element={<Forgot />} />
+          <Route path="/users/:id" element={<HomeLogged />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot" element={<Forgot />} />
           <Route path="/:shortId" element={<Links />} />
         </Routes>
       </BrowserRouter>

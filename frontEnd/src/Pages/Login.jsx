@@ -11,15 +11,17 @@ const Login = () => {
 
   const Login = async () => {
     try {
-      await instance.get('/users/:id', {
+      const res = await instance.post("/users/login", {
         email: email,
         password: password,
       });
-      toast("Successfully logged in")
+      toast("Successfully logged in");
+      window.location.replace(`users/${res.data.data._id}`);
+      console.log(res.data.data._id);
     } catch (error) {
-      toast(error.response.data.data);   
+      toast(error.response.data.data);
     }
-  }
+  };
 
   return (
     <div className="loginContainer">
@@ -31,7 +33,11 @@ const Login = () => {
       <main>
         <div className="loginBox">
           <Link to={"/"}>
-            <img alt="yolo" src={require("../images/logo.png")} className="logo" />
+            <img
+              alt="yolo"
+              src={require("../images/logo.png")}
+              className="logo"
+            />
           </Link>
           <p className="boginooP">Нэвтрэх</p>
           <div className="boxThree">
@@ -72,7 +78,7 @@ const Login = () => {
           <button onClick={Login} type="submit" className="clickGreen">
             Нэвтрэх
           </button>
-          <Link to={"/signUp"} className="newUser">
+          <Link to={"/signup"} className="newUser">
             Шинэ хэрэглэгч бол энд дарна уу?
           </Link>
         </div>
